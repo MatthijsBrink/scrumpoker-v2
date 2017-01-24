@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     
     func drawLines(){
 
-        let mainLine = drawLine(x: (Int(self.view.frame.size.width) / 2) - 32, y: 350, width: 64, height: 5)
+        let mainLine = drawLine(x: (Int(self.view.frame.size.width) / 2) - 32, y: (Int(self.view.frame.size.height) / 2) + (Int(mainLabel.frame.size.height) / 2), width: 64, height: 5)
         self.view.layer.addSublayer(mainLine)
         
         let leftLine = drawLine(x: 3, y: 33, width: 13, height: 2)
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
             currentValue += rotation.degrees / 360 * 100
         }
         if recognizer.distance != nil{
-            if recognizer.distance! > 135 && recognizer.distance! < 185 {
+            if recognizer.distance! > 120 && recognizer.distance! < 220 {
                 if Int((rotate?.degrees)!) >= 270 && Int((rotate?.degrees)!) <= 295 {
                     mainLabel.text = "0"
                     leftLabel.text = "0"
