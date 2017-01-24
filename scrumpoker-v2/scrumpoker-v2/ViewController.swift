@@ -1,18 +1,14 @@
-//
-//  ViewController.swift
-//  scrumpoker-v2
-//
-//  Created by Stagiare 2 on 24-01-17.
-//  Copyright © 2017 Stagiare 2. All rights reserved.
-//
+// Tussen de 135 en 185 distance
 
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var mainView: UIView!
 
+    @IBOutlet weak var leftLabel: UILabel!
+    @IBOutlet weak var rightLabel: UILabel!
+    @IBOutlet weak var mainLabel: UILabel!
     
-    
-    var feedbackLabel = UILabel(frame: CGRect.zero)
     var currentValue:CGFloat = 0.0 {
         didSet {
             if (currentValue > 100) {
@@ -26,45 +22,30 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let shapeLayer = drawCircle()
+        mainView.layer.addSublayer(shapeLayer)
         
         
         self.view.addGestureRecognizer(XMCircleGestureRecognizer(midPoint: self.view.center, target: self, action: #selector(ViewController.rotateGesture(recognizer:))))
-        
-        //add feedbackLabel
-        feedbackLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(feedbackLabel)
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: [], metrics: nil, views: ["view":feedbackLabel]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: [], metrics: nil, views: ["view":feedbackLabel]))
-        
-        feedbackLabel.textAlignment = .center
-        feedbackLabel.numberOfLines = 0;
-        feedbackLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
-        feedbackLabel.text = "Perform a gesture here."
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func drawCircle() -> CAShapeLayer {
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: self.mainView.bounds.width / 2,y: self.mainView.bounds.height / 2), radius: CGFloat(self.mainView.bounds.width / 2), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = UIColor.lightGray.cgColor
+        shapeLayer.lineWidth = 50.0
+        return shapeLayer
     }
     
     func rotateGesture(recognizer:XMCircleGestureRecognizer)
     {
-        feedbackLabel.text = ""
         if let rotation = recognizer.rotation {
             currentValue += rotation.degrees / 360 * 100
-            feedbackLabel.text = feedbackLabel.text! + String(format:"Value: %.2f%%", currentValue)
         }
-        if let angle = recognizer.angle {
-            feedbackLabel.text = feedbackLabel.text! + "\n" + String(format:"Angle: %.2f%", angle.degrees)
-        }
-        
         if let distance = recognizer.distance {
-            feedbackLabel.text = feedbackLabel.text! + "\n" + String(format:"Distance: %.0f%", distance)
+            
         }
     }
-
-
 }
-

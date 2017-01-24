@@ -415,6 +415,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "scrumpoker-v2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "test.scrumpoker-v2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -427,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "scrumpoker-v2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "test.scrumpoker-v2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,6 +509,7 @@
 				8B5BCC8F1E3736DA00FC8EB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B5BCC901E3736DA00FC8EB8 /* Build configuration list for PBXNativeTarget "scrumpoker-v2Tests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +518,7 @@
 				8B5BCC921E3736DA00FC8EB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B5BCC931E3736DA00FC8EB8 /* Build configuration list for PBXNativeTarget "scrumpoker-v2UITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +527,7 @@
 				8B5BCC951E3736DA00FC8EB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
