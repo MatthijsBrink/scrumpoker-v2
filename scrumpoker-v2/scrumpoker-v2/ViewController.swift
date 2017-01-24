@@ -66,6 +66,8 @@ class ViewController: UIViewController {
             currentValue += rotation.degrees / 360 * 100
         }
         if recognizer.distance != nil{
+            leftLabel.layer.sublayers?.removeAll()
+            rightLabel.layer.sublayers?.removeAll()
             if recognizer.distance! > 120 && recognizer.distance! < 220 {
                 if Int((rotate?.degrees)!) >= 270 && Int((rotate?.degrees)!) <= 295 {
                     mainLabel.text = "0"
@@ -137,6 +139,11 @@ class ViewController: UIViewController {
                     leftLabel.text = "☕️"
                     rightLabel.text = "☕️"
                 }
+                let leftLine = drawLine(x: (Int(leftLabel.frame.size.width) / 2) - 7, y: 33, width: 14, height: 2)
+                leftLabel.layer.addSublayer(leftLine)
+                
+                let rightLine = drawLine(x: (Int(rightLabel.frame.size.width) / 2) - 7, y: 33, width: 14, height: 2)
+                rightLabel.layer.addSublayer(rightLine)
             }
         }
     }
