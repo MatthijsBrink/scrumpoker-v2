@@ -52,10 +52,10 @@ class ViewController: UIViewController {
         let mainLine = drawLine(x: (Int(self.view.frame.size.width) / 2) - 32, y: (Int(self.view.frame.size.height) / 2) + (Int(mainLabel.frame.size.height) / 2), width: 64, height: 5)
         self.view.layer.addSublayer(mainLine)
         
-        let leftLine = drawLine(x: 3, y: 33, width: 13, height: 2)
+        let leftLine = drawLine(x: 3, y: 35, width: 13, height: 2)
         leftLabel.layer.addSublayer(leftLine)
         
-        let rightLine = drawLine(x: 3, y: 33, width: 13, height: 2)
+        let rightLine = drawLine(x: 3, y: 35, width: 13, height: 2)
         rightLabel.layer.addSublayer(rightLine)
     }
     
@@ -66,8 +66,6 @@ class ViewController: UIViewController {
             currentValue += rotation.degrees / 360 * 100
         }
         if recognizer.distance != nil{
-            leftLabel.layer.sublayers?.removeAll()
-            rightLabel.layer.sublayers?.removeAll()
             if recognizer.distance! > 120 && recognizer.distance! < 220 {
                 if Int((rotate?.degrees)!) >= 270 && Int((rotate?.degrees)!) <= 295 {
                     mainLabel.text = "0"
@@ -139,11 +137,6 @@ class ViewController: UIViewController {
                     leftLabel.text = "☕️"
                     rightLabel.text = "☕️"
                 }
-                let leftLine = drawLine(x: (Int(leftLabel.frame.size.width) / 2) - 7, y: 33, width: 14, height: 2)
-                leftLabel.layer.addSublayer(leftLine)
-                
-                let rightLine = drawLine(x: (Int(rightLabel.frame.size.width) / 2) - 7, y: 33, width: 14, height: 2)
-                rightLabel.layer.addSublayer(rightLine)
             }
         }
     }
