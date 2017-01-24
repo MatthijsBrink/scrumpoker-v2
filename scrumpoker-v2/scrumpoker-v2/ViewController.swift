@@ -23,15 +23,9 @@ class ViewController: UIViewController {
         let circleLayer = drawCircle()
         mainView.layer.addSublayer(circleLayer)
         rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        mainLabel.sizeToFit()
         
-        let mainLine = drawLine(x: 17, y: 165, width: 64, height: 5)
-        mainLabel.layer.addSublayer(mainLine)
-        
-        let leftLine = drawLine(x: 3, y: 33, width: 13, height: 2)
-        leftLabel.layer.addSublayer(leftLine)
-        
-        let rightLine = drawLine(x: 3, y: 33, width: 13, height: 2)
-        rightLabel.layer.addSublayer(rightLine)
+        drawLines()
         
         self.view.addGestureRecognizer(XMCircleGestureRecognizer(midPoint: self.view.center, target: self, action: #selector(ViewController.rotateGesture(recognizer:))))
     }
@@ -51,6 +45,18 @@ class ViewController: UIViewController {
         layer.path = UIBezierPath(roundedRect: CGRect(x: x, y: y, width: width, height: height), cornerRadius: 0).cgPath
         layer.fillColor = hexStringToUIColor(hex: "#9B917A").cgColor
         return layer
+    }
+    
+    func drawLines(){
+
+        let mainLine = drawLine(x: (Int(self.view.frame.size.width) / 2) - 32, y: 350, width: 64, height: 5)
+        self.view.layer.addSublayer(mainLine)
+        
+        let leftLine = drawLine(x: 3, y: 33, width: 13, height: 2)
+        leftLabel.layer.addSublayer(leftLine)
+        
+        let rightLine = drawLine(x: 3, y: 33, width: 13, height: 2)
+        rightLabel.layer.addSublayer(rightLine)
     }
     
     func rotateGesture(recognizer:XMCircleGestureRecognizer)
