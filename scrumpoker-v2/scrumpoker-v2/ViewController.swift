@@ -21,7 +21,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         
         //MARK: View properties
         mainLabel.sizeToFit()
-
+        leftLabel.frame = CGRect(x: 10, y: 20, width: 50, height: 30)
+        rightLabel.frame = CGRect(x: self.view.frame.width - 60, y: self.view.frame.height - 50, width: 50, height: 30)
+        
         // Spinning label and image
         rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         rightImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
@@ -66,10 +68,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let mainLine = drawLine(x: (Int(self.view.frame.size.width) / 2) - 23, y: (Int(self.view.frame.size.height) / 2) + (Int(mainLabel.frame.size.height) / 2), width: 46, height: 7)
         self.view.layer.addSublayer(mainLine)
         
-        let leftLine = drawLine(x: 3, y: 35, width: 9, height: 3)
+        let leftLine = drawLine(x: 20, y: 33, width: 10, height: 3)
         leftLabel.layer.addSublayer(leftLine)
         
-        let rightLine = drawLine(x: 3, y: 35, width: 9, height: 3)
+        let rightLine = drawLine(x: 20, y: 33, width: 10, height: 3)
         rightLabel.layer.addSublayer(rightLine)
     }
     

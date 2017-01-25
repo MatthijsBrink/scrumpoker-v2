@@ -23,12 +23,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMN-TQ-MXN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMN-TQ-MXN">
+                                <frame key="frameInset" minX="340.5" minY="611.5" width="14.5" height="35.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vk-vV-bdq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vk-vV-bdq">
+                                <frame key="frameInset" minX="20" minY="20" width="14.5" height="35.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,21 +61,17 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zjK-nx-uXQ" secondAttribute="trailing" id="2hm-NJ-dsc"/>
+                            <constraint firstItem="4Zt-Nv-Ujd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="5Dn-cv-Qfx"/>
+                            <constraint firstAttribute="trailing" secondItem="jLP-M3-j97" secondAttribute="trailing" constant="22" id="7JX-Ad-rkD"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zjK-nx-uXQ" secondAttribute="bottom" id="9vV-gr-xxt"/>
                             <constraint firstItem="h6T-e7-6Gz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="FOg-Mm-cUe"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jLP-M3-j97" secondAttribute="bottom" constant="20" id="Gzm-xh-h0w"/>
                             <constraint firstItem="zjK-nx-uXQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="J0d-z0-ZvG"/>
-                            <constraint firstItem="4Zt-Nv-Ujd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="MoK-BM-NUh"/>
-                            <constraint firstAttribute="trailing" secondItem="jMN-TQ-MXN" secondAttribute="trailing" constant="20" id="QRD-0P-rfK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jLP-M3-j97" secondAttribute="bottom" constant="20" id="JzW-g5-kLZ"/>
                             <constraint firstItem="h6T-e7-6Gz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="RC9-SV-fpb"/>
                             <constraint firstItem="D3W-3O-gSC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TPx-90-5Nb"/>
                             <constraint firstItem="zjK-nx-uXQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZRO-5h-bXT"/>
-                            <constraint firstAttribute="trailing" secondItem="jLP-M3-j97" secondAttribute="trailing" constant="15" id="hZY-pF-ILT"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jMN-TQ-MXN" secondAttribute="bottom" constant="20" id="jEe-sk-5rN"/>
-                            <constraint firstItem="2vk-vV-bdq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="jZ6-wu-EOA"/>
+                            <constraint firstItem="4Zt-Nv-Ujd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="22" id="mlO-Jk-aaF"/>
                             <constraint firstItem="D3W-3O-gSC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nbC-Gz-Ic1"/>
-                            <constraint firstItem="4Zt-Nv-Ujd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="u5x-zg-Cbu"/>
-                            <constraint firstItem="2vk-vV-bdq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="y6W-o7-DOG"/>
                         </constraints>
                     </view>
                     <connections>
