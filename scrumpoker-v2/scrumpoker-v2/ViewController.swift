@@ -1,8 +1,9 @@
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    //MARK: Properties
     @IBOutlet var mainView: UIView!
-
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var mainLabel: UILabel!
@@ -11,16 +12,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var overlayImg: UIImageView!
 
-    var currentValue:CGFloat = 0.0 {
-        didSet {
-            if (currentValue > 100) {
-                currentValue = 100
-            }
-            if (currentValue < 0) {
-                currentValue = 0
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +22,14 @@ class ViewController: UIViewController {
         rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         rightImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         self.view.bringSubview(toFront: overlayImg)
-
+        
         drawLines()
         
         self.view.addGestureRecognizer(XMCircleGestureRecognizer(midPoint: self.view.center, target: self, action: #selector(ViewController.rotateGesture(recognizer:))))
+        let overlayTap = UITapGestureRecognizer(target: self, action: #selector(hideOverlay))
+        overlayTap.delegate = self
+        view.addGestureRecognizer(overlayTap)
+
     }
     
     func drawCircle() -> CAShapeLayer {
@@ -69,9 +64,6 @@ class ViewController: UIViewController {
     func rotateGesture(recognizer:XMCircleGestureRecognizer)
     {
         let rotate = recognizer.angle
-        if let rotation = recognizer.rotation {
-            currentValue += rotation.degrees / 360 * 100
-        }
         if recognizer.distance != nil{
             if overlayImg.alpha == 0{
                 if recognizer.distance! > 120 && recognizer.distance! < 220 {
@@ -153,6 +145,13 @@ class ViewController: UIViewController {
                     }
                 }
                 if recognizer.distance! < 70{
+                    for gesture in view.gestureRecognizers!{
+                        if let recognizer = gesture as? XMCircleGestureRecognizer{
+                            view.removeGestureRecognizer(recognizer)
+                            
+                        }
+                    }
+                    
                     UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
                         self.view.bringSubview(toFront: self.overlayImg)
                         self.overlayImg.alpha = 1
@@ -160,12 +159,6 @@ class ViewController: UIViewController {
                             self.overlayImg.alpha = 1
                     })
                 }
-            }else{
-                UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
-                    self.overlayImg.alpha = 0
-                    }, completion: { finished in
-                        self.overlayImg.alpha = 0
-                })
             }
         }
     }
@@ -190,6 +183,15 @@ class ViewController: UIViewController {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+    
+    func hideOverlay(){
+        UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
+            self.overlayImg.alpha = 0
+            }, completion: { finished in
+                self.overlayImg.alpha = 0
+        })
+        self.view.addGestureRecognizer(XMCircleGestureRecognizer(midPoint: self.view.center, target: self, action: #selector(ViewController.rotateGesture(recognizer:))))
     }
     
 }
