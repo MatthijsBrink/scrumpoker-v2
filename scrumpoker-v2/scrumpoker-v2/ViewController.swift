@@ -16,6 +16,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Prevent phone from sleeping while app is active
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         //MARK: View properties
         mainLabel.sizeToFit()
 
