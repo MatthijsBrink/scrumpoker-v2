@@ -51,16 +51,21 @@
                                     <constraint firstAttribute="height" constant="30" id="x9r-SH-1dV"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="overlay" translatesAutoresizingMaskIntoConstraints="NO" id="zjK-nx-uXQ"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zjK-nx-uXQ" secondAttribute="trailing" id="2hm-NJ-dsc"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zjK-nx-uXQ" secondAttribute="bottom" id="9vV-gr-xxt"/>
                             <constraint firstItem="h6T-e7-6Gz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="FOg-Mm-cUe"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jLP-M3-j97" secondAttribute="bottom" constant="20" id="Gzm-xh-h0w"/>
+                            <constraint firstItem="zjK-nx-uXQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="J0d-z0-ZvG"/>
                             <constraint firstItem="4Zt-Nv-Ujd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="MoK-BM-NUh"/>
                             <constraint firstAttribute="trailing" secondItem="jMN-TQ-MXN" secondAttribute="trailing" constant="20" id="QRD-0P-rfK"/>
                             <constraint firstItem="h6T-e7-6Gz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="RC9-SV-fpb"/>
                             <constraint firstItem="D3W-3O-gSC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TPx-90-5Nb"/>
+                            <constraint firstItem="zjK-nx-uXQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZRO-5h-bXT"/>
                             <constraint firstAttribute="trailing" secondItem="jLP-M3-j97" secondAttribute="trailing" constant="15" id="hZY-pF-ILT"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jMN-TQ-MXN" secondAttribute="bottom" constant="20" id="jEe-sk-5rN"/>
                             <constraint firstItem="2vk-vV-bdq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="jZ6-wu-EOA"/>
@@ -75,6 +80,7 @@
                         <outlet property="mainImage" destination="h6T-e7-6Gz" id="IjD-ac-62Z"/>
                         <outlet property="mainLabel" destination="D3W-3O-gSC" id="biS-90-gv7"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="wjI-7F-ri3"/>
+                        <outlet property="overlayImg" destination="zjK-nx-uXQ" id="k37-zM-dfM"/>
                         <outlet property="rightImage" destination="jLP-M3-j97" id="K3X-Xt-FMX"/>
                         <outlet property="rightLabel" destination="jMN-TQ-MXN" id="f8B-pd-eHl"/>
                     </connections>
@@ -86,5 +92,6 @@
     </scenes>
     <resources>
         <image name="coffee" width="540" height="506"/>
+        <image name="overlay" width="375" height="667"/>
     </resources>
 </document>

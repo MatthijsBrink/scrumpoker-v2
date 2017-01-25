@@ -9,6 +9,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightImage: UIImageView!
     @IBOutlet weak var leftImage: UIImageView!
     @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var overlayImg: UIImageView!
 
     var currentValue:CGFloat = 0.0 {
         didSet {
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
         mainLabel.sizeToFit()
         rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         rightImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        self.view.bringSubview(toFront: overlayImg)
 
         drawLines()
         
@@ -71,83 +73,99 @@ class ViewController: UIViewController {
             currentValue += rotation.degrees / 360 * 100
         }
         if recognizer.distance != nil{
-            if recognizer.distance! > 120 && recognizer.distance! < 220 {
-                mainImage.isHidden = true
-                leftImage.isHidden = true
-                rightImage.isHidden = true
-                if Int((rotate?.degrees)!) >= 270 && Int((rotate?.degrees)!) <= 295 {
-                    mainLabel.text = "0"
-                    leftLabel.text = "0"
-                    rightLabel.text = "0"
+            if overlayImg.alpha == 0{
+                if recognizer.distance! > 120 && recognizer.distance! < 220 {
+                    mainImage.isHidden = true
+                    leftImage.isHidden = true
+                    rightImage.isHidden = true
+                    if Int((rotate?.degrees)!) >= 270 && Int((rotate?.degrees)!) <= 295 {
+                        mainLabel.text = "0"
+                        leftLabel.text = "0"
+                        rightLabel.text = "0"
+                    }
+                    if Int((rotate?.degrees)!) >= 295 && Int((rotate?.degrees)!) <= 320 {
+                        mainLabel.text = "1/2"
+                        leftLabel.text = "1/2"
+                        rightLabel.text = "1/2"
+                    }
+                    if Int((rotate?.degrees)!) >= 320 && Int((rotate?.degrees)!) <= 345 {
+                        mainLabel.text = "1"
+                        leftLabel.text = "1"
+                        rightLabel.text = "1"
+                    }
+                    if Int((rotate?.degrees)!) >= 345 && Int((rotate?.degrees)!) <= 360 || Int((rotate?.degrees)!) >= 0 && Int((rotate?.degrees)!) <= 10 {
+                        mainLabel.text = "2"
+                        leftLabel.text = "2"
+                        rightLabel.text = "2"
+                    }
+                    if Int((rotate?.degrees)!) >= 10 && Int((rotate?.degrees)!) <= 35{
+                        mainLabel.text = "3"
+                        leftLabel.text = "3"
+                        rightLabel.text = "3"
+                    }
+                    if Int((rotate?.degrees)!) >= 35 && Int((rotate?.degrees)!) <= 60{
+                        mainLabel.text = "5"
+                        leftLabel.text = "5"
+                        rightLabel.text = "5"
+                    }
+                    if Int((rotate?.degrees)!) >= 60 && Int((rotate?.degrees)!) <= 85{
+                        mainLabel.text = "8"
+                        leftLabel.text = "8"
+                        rightLabel.text = "8"
+                    }
+                    if Int((rotate?.degrees)!) >= 85 && Int((rotate?.degrees)!) <= 110{
+                        mainLabel.text = "13"
+                        leftLabel.text = "13"
+                        rightLabel.text = "13"
+                    }
+                    if Int((rotate?.degrees)!) >= 110 && Int((rotate?.degrees)!) <= 135{
+                        mainLabel.text = "20"
+                        leftLabel.text = "20"
+                        rightLabel.text = "20"
+                    }
+                    if Int((rotate?.degrees)!) >= 135 && Int((rotate?.degrees)!) <= 160{
+                        mainLabel.text = "40"
+                        leftLabel.text = "40"
+                        rightLabel.text = "40"
+                    }
+                    if Int((rotate?.degrees)!) >= 160 && Int((rotate?.degrees)!) <= 185{
+                        mainLabel.text = "100"
+                        leftLabel.text = "100"
+                        rightLabel.text = "100"
+                    }
+                    if Int((rotate?.degrees)!) >= 185 && Int((rotate?.degrees)!) <= 210{
+                        mainLabel.text = "∞"
+                        leftLabel.text = "∞"
+                        rightLabel.text = "∞"
+                    }
+                    if Int((rotate?.degrees)!) >= 210 && Int((rotate?.degrees)!) <= 235{
+                        mainLabel.text = "?"
+                        leftLabel.text = "?"
+                        rightLabel.text = "?"
+                    }
+                    if Int((rotate?.degrees)!) >= 235 && Int((rotate?.degrees)!) <= 270{
+                        mainLabel.text = "   "
+                        leftLabel.text = "   "
+                        rightLabel.text = "   "
+                        mainImage.isHidden = false
+                        leftImage.isHidden = false
+                        rightImage.isHidden = false
+                    }
                 }
-                if Int((rotate?.degrees)!) >= 295 && Int((rotate?.degrees)!) <= 320 {
-                    mainLabel.text = "1/2"
-                    leftLabel.text = "1/2"
-                    rightLabel.text = "1/2"
+                if recognizer.distance! < 70{
+                    UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
+                        self.view.bringSubview(toFront: self.overlayImg)
+                        self.overlayImg.alpha = 1
+                        }, completion: { finished in
+                            self.overlayImg.alpha = 1
+                    })
                 }
-                if Int((rotate?.degrees)!) >= 320 && Int((rotate?.degrees)!) <= 345 {
-                    mainLabel.text = "1"
-                    leftLabel.text = "1"
-                    rightLabel.text = "1"
-                }
-                if Int((rotate?.degrees)!) >= 345 && Int((rotate?.degrees)!) <= 360 || Int((rotate?.degrees)!) >= 0 && Int((rotate?.degrees)!) <= 10 {
-                    mainLabel.text = "2"
-                    leftLabel.text = "2"
-                    rightLabel.text = "2"
-                }
-                if Int((rotate?.degrees)!) >= 10 && Int((rotate?.degrees)!) <= 35{
-                    mainLabel.text = "3"
-                    leftLabel.text = "3"
-                    rightLabel.text = "3"
-                }
-                if Int((rotate?.degrees)!) >= 35 && Int((rotate?.degrees)!) <= 60{
-                    mainLabel.text = "5"
-                    leftLabel.text = "5"
-                    rightLabel.text = "5"
-                }
-                if Int((rotate?.degrees)!) >= 60 && Int((rotate?.degrees)!) <= 85{
-                    mainLabel.text = "8"
-                    leftLabel.text = "8"
-                    rightLabel.text = "8"
-                }
-                if Int((rotate?.degrees)!) >= 85 && Int((rotate?.degrees)!) <= 110{
-                    mainLabel.text = "13"
-                    leftLabel.text = "13"
-                    rightLabel.text = "13"
-                }
-                if Int((rotate?.degrees)!) >= 110 && Int((rotate?.degrees)!) <= 135{
-                    mainLabel.text = "20"
-                    leftLabel.text = "20"
-                    rightLabel.text = "20"
-                }
-                if Int((rotate?.degrees)!) >= 135 && Int((rotate?.degrees)!) <= 160{
-                    mainLabel.text = "40"
-                    leftLabel.text = "40"
-                    rightLabel.text = "40"
-                }
-                if Int((rotate?.degrees)!) >= 160 && Int((rotate?.degrees)!) <= 185{
-                    mainLabel.text = "100"
-                    leftLabel.text = "100"
-                    rightLabel.text = "100"
-                }
-                if Int((rotate?.degrees)!) >= 185 && Int((rotate?.degrees)!) <= 210{
-                    mainLabel.text = "∞"
-                    leftLabel.text = "∞"
-                    rightLabel.text = "∞"
-                }
-                if Int((rotate?.degrees)!) >= 210 && Int((rotate?.degrees)!) <= 235{
-                    mainLabel.text = "?"
-                    leftLabel.text = "?"
-                    rightLabel.text = "?"
-                }
-                if Int((rotate?.degrees)!) >= 235 && Int((rotate?.degrees)!) <= 270{
-                    mainLabel.text = "   "
-                    leftLabel.text = "   "
-                    rightLabel.text = "   "
-                    mainImage.isHidden = false
-                    leftImage.isHidden = false
-                    rightImage.isHidden = false
-                }
+            }else{
+                UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
+                    self.overlayImg.alpha = 0
+                    }, completion: { finished in
+                        self.overlayImg.alpha = 0
+                })
             }
         }
     }
