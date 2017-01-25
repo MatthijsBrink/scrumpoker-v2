@@ -6,6 +6,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var rightImage: UIImageView!
+    @IBOutlet weak var leftImage: UIImageView!
+    @IBOutlet weak var mainImage: UIImageView!
 
     var currentValue:CGFloat = 0.0 {
         didSet {
@@ -24,7 +27,9 @@ class ViewController: UIViewController {
         mainView.layer.addSublayer(circleLayer)
         rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         mainLabel.sizeToFit()
-        
+        rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        rightImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+
         drawLines()
         
         self.view.addGestureRecognizer(XMCircleGestureRecognizer(midPoint: self.view.center, target: self, action: #selector(ViewController.rotateGesture(recognizer:))))
@@ -67,6 +72,9 @@ class ViewController: UIViewController {
         }
         if recognizer.distance != nil{
             if recognizer.distance! > 120 && recognizer.distance! < 220 {
+                mainImage.isHidden = true
+                leftImage.isHidden = true
+                rightImage.isHidden = true
                 if Int((rotate?.degrees)!) >= 270 && Int((rotate?.degrees)!) <= 295 {
                     mainLabel.text = "0"
                     leftLabel.text = "0"
@@ -133,9 +141,12 @@ class ViewController: UIViewController {
                     rightLabel.text = "?"
                 }
                 if Int((rotate?.degrees)!) >= 235 && Int((rotate?.degrees)!) <= 270{
-                    mainLabel.text = "☕️"
-                    leftLabel.text = "☕️"
-                    rightLabel.text = "☕️"
+                    mainLabel.text = "   "
+                    leftLabel.text = "   "
+                    rightLabel.text = "   "
+                    mainImage.isHidden = false
+                    leftImage.isHidden = false
+                    rightImage.isHidden = false
                 }
             }
         }
