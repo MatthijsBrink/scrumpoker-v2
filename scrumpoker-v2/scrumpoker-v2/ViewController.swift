@@ -15,16 +15,23 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let circleLayer = drawCircle()
-        mainView.layer.addSublayer(circleLayer)
-        rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        
+        //MARK: View properties
         mainLabel.sizeToFit()
+
+        // Spinning label and image
         rightLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         rightImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        
+        //MARK: Subviews
+        let circleLayer = drawCircle()
+        mainView.layer.addSublayer(circleLayer)
         self.view.bringSubview(toFront: overlayImg)
         
+        //MARK: Sublayer
         drawLines()
         
+        //MARK: Gesture Recognizers
         self.view.addGestureRecognizer(XMCircleGestureRecognizer(midPoint: self.view.center, target: self, action: #selector(ViewController.rotateGesture(recognizer:))))
         let overlayTap = UITapGestureRecognizer(target: self, action: #selector(hideOverlay))
         overlayTap.delegate = self
@@ -32,6 +39,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
     }
     
+    // Drawing the circle
     func drawCircle() -> CAShapeLayer {
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: self.mainView.bounds.width / 2,y: self.mainView.bounds.height / 2), radius: CGFloat(self.mainView.bounds.width / 2), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         let shapeLayer = CAShapeLayer()
@@ -42,6 +50,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         return shapeLayer
     }
     
+    // Function for drawing the lines
     func drawLine(x: Int, y: Int, width: Int, height: Int) -> CAShapeLayer {
         let layer = CAShapeLayer()
         layer.path = UIBezierPath(roundedRect: CGRect(x: x, y: y, width: width, height: height), cornerRadius: 0).cgPath
@@ -49,8 +58,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         return layer
     }
     
+    // Drawing the label lines
     func drawLines(){
-
         let mainLine = drawLine(x: (Int(self.view.frame.size.width) / 2) - 23, y: (Int(self.view.frame.size.height) / 2) + (Int(mainLabel.frame.size.height) / 2), width: 46, height: 7)
         self.view.layer.addSublayer(mainLine)
         
@@ -61,6 +70,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         rightLabel.layer.addSublayer(rightLine)
     }
     
+    // Function for changing label text while rotating circle
     func rotateGesture(recognizer:XMCircleGestureRecognizer)
     {
         let rotate = recognizer.angle
@@ -151,18 +161,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                             
                         }
                     }
-                    
-                    UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
-                        self.view.bringSubview(toFront: self.overlayImg)
-                        self.overlayImg.alpha = 1
-                        }, completion: { finished in
-                            self.overlayImg.alpha = 1
-                    })
+                    showOverlay()
                 }
             }
         }
     }
     
+    // Function for using hex codes for colo(u)rs
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -185,6 +190,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         )
     }
     
+    // Function for hiding the overlay with animation
     func hideOverlay(){
         UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
             self.overlayImg.alpha = 0
@@ -194,4 +200,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(XMCircleGestureRecognizer(midPoint: self.view.center, target: self, action: #selector(ViewController.rotateGesture(recognizer:))))
     }
     
+    //Function for showing the overlay with animation
+    func showOverlay(){
+        UIImageView.animate(withDuration: 0.2, delay: 0, animations: {
+            self.view.bringSubview(toFront: self.overlayImg)
+            self.overlayImg.alpha = 1
+            }, completion: { finished in
+                self.overlayImg.alpha = 1
+        })
+    }
 }
